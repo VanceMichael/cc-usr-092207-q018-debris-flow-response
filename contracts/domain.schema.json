@@ -8,7 +8,13 @@
     "sample_id",
     "actors",
     "facts",
-    "constraints"
+    "constraints",
+    "situation",
+    "situation_elements",
+    "event_policy",
+    "field_sync",
+    "access_rules",
+    "commander_view"
   ],
   "properties": {
     "domain": {
@@ -17,7 +23,7 @@
     },
     "version": {
       "type": "integer",
-      "minimum": 1
+      "minimum": 2
     },
     "sample_id": {
       "type": "string",
@@ -40,6 +46,108 @@
     "constraints": {
       "type": "array",
       "minItems": 2,
+      "items": {
+        "type": "string"
+      }
+    },
+    "situation": {
+      "type": "object",
+      "required": [
+        "as_of",
+        "hazard_area",
+        "missing_initial",
+        "found",
+        "still_missing",
+        "sync_required"
+      ],
+      "properties": {
+        "as_of": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hazard_area": {
+          "type": "string",
+          "minLength": 1
+        },
+        "missing_initial": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "found": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "still_missing": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sync_required": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "situation_elements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "event_policy": {
+      "type": "object",
+      "required": [
+        "append_only",
+        "event_types"
+      ],
+      "properties": {
+        "append_only": {
+          "const": true
+        },
+        "event_types": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "field_sync": {
+      "type": "object",
+      "required": [
+        "weak_network",
+        "signed_tasks",
+        "report_back"
+      ],
+      "properties": {
+        "weak_network": {
+          "const": true
+        },
+        "signed_tasks": {
+          "const": true
+        },
+        "report_back": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "access_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "commander_view": {
+      "type": "array",
+      "minItems": 1,
       "items": {
         "type": "string"
       }
