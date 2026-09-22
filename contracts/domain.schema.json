@@ -6,8 +6,11 @@
     "domain",
     "version",
     "sample_id",
+    "as_of",
     "actors",
     "facts",
+    "situation_elements",
+    "event_log_types",
     "constraints"
   ],
   "properties": {
@@ -23,6 +26,11 @@
       "type": "string",
       "minLength": 1
     },
+    "as_of": {
+      "type": "string",
+      "minLength": 1,
+      "description": "资料截止时间（ISO 8601），用于判断信息是否过期"
+    },
     "actors": {
       "type": "array",
       "minItems": 2,
@@ -33,6 +41,22 @@
     "facts": {
       "type": "array",
       "minItems": 2,
+      "items": {
+        "type": "string"
+      }
+    },
+    "situation_elements": {
+      "type": "array",
+      "minItems": 2,
+      "description": "实时态势必须汇总的要素",
+      "items": {
+        "type": "string"
+      }
+    },
+    "event_log_types": {
+      "type": "array",
+      "minItems": 2,
+      "description": "只能追加、不得覆盖的事件类型",
       "items": {
         "type": "string"
       }
